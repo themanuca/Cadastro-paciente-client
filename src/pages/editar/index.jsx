@@ -64,7 +64,7 @@ export default function Forms(){
             setcpf(res.data.cpf);
             setendereco(res.data.endereco);
             setsexo(res.data.sexo);
-            setstatus(res.data.sexo);
+            setstatus(res.data.status);
         }
 
         Dadospaciente()
