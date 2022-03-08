@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Container,Content, Alermsg } from "./styles";
 import api from '../../services/api';
 import { useParams } from "react-router-dom";
+require("dotenv/config");
 
 export default function Forms(){
 
