@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function Dash() {
 
-    var rota = "http://localhost:5000";
+    var rota = REACT_APP_API_URL;
 
     const [pacientes, setPacientes] = useState([]); //Recuperando os pacientes
     const[busca, setBusca] = useState([]); // Fazendo a busca

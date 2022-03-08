@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function Forms(){
 
-    var url = "http://localhost:5000";
+    var rota = REACT_APP_API_URL;
 
     const [nome, setNome] = useState('');
     const [data, setdata] = useState('');
@@ -32,7 +32,7 @@ export default function Forms(){
 
         console.log(dados);
        
-        const res = await api.post( url + '/register/paciente',dados);
+        const res = await api.post( rota + '/register/paciente',dados);
        
         console.log(res.data);
             if(res.status === 200){
