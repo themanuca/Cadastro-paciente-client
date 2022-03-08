@@ -49,7 +49,6 @@ export const Content = styled.div`
 
 >form input[type="submit"]{
     margin-top: 2rem;
-    margin-bottom:1.2rem ;
     padding: 0.4rem;
     background: linear-gradient(to left, #4776e6, #8e54e9);
     width: 150px;

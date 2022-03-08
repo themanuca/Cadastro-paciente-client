@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Container,Content, Alermsg } from "./styles";
 import api from '../../services/api';
-import Button from 'react-bootstrap/Button';
-
-
+import { useParams } from "react-router-dom";
 
 export default function Forms(){
 
@@ -18,6 +16,9 @@ export default function Forms(){
 
     const[msg, setMsg] = useState();
     const[corBgmsg, setCordbgmsg] = useState();
+    const {id} = useParams()
+
+
 
     async function salvar(e){
          e.preventDefault();
@@ -27,12 +28,13 @@ export default function Forms(){
             sexo:sexo, 
             nascimento:data,
             endereco:endereco,
-            status:status
+            status:status,
+            _id:id
         } 
 
         console.log(dados);
        
-        const res = await api.post( url + '/register/paciente',dados);
+        const res = await api.put( url + '/update/paciente/',dados);
        
         console.log(res.data);
             if(res.status === 200){
@@ -52,16 +54,23 @@ export default function Forms(){
     }
   
     var padding = 0;
-
     useEffect(()=>{
         var padding = 1;
+        async function Dadospaciente(){
+            var res = await api.get(url +'/detail/paciente/'+id);
+            console.log(res.data);
+            setNome(res.data.nome);
+            setdata(res.data.nascimento);
+            setcpf(res.data.cpf);
+            setendereco(res.data.endereco);
+            setsexo(res.data.sexo);
+            setstatus(res.data.sexo);
+        }
+
+        Dadospaciente()
 
     },[msg])
 
-    
-    const novoPaciente = ()=>{
-        window.location.href="/dash";
-    }
   
 
     return (
@@ -70,7 +79,7 @@ export default function Forms(){
 
             <Content>
 
-                <h2>Cadastro de Pacientes</h2>
+                <h2>Atualização de Pacientes</h2>
 
                 <form >
                     <div className="field-1">
@@ -152,7 +161,6 @@ export default function Forms(){
 
                 </form>
 
-                <Button onClick={novoPaciente} variant="info">Lista de Usuario</Button>
 
             </Content>
         </Container>
