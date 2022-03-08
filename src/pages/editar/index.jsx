@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export default function Forms(){
 
-    var rota = REACT_APP_API_URL;
+    var rota = process.env.REACT_APP_API_URL;
 
     const [nome, setNome] = useState('');
     const [data, setdata] = useState('');
@@ -35,7 +35,7 @@ export default function Forms(){
 
         console.log(dados);
        
-        const res = await api.put( REACT_APP_API_URL + '/update/paciente/',dados);
+        const res = await api.put( rota + '/update/paciente/',dados);
        
         console.log(res.data);
             if(res.status === 200){
@@ -58,7 +58,7 @@ export default function Forms(){
     useEffect(()=>{
         var padding = 1;
         async function Dadospaciente(){
-            var res = await api.get(url +'/detail/paciente/'+id);
+            var res = await api.get(rota +'/detail/paciente/'+id);
             console.log(res.data);
             setNome(res.data.nome);
             setdata(res.data.nascimento);

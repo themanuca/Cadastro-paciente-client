@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function Forms(){
 
-    var rota = REACT_APP_API_URL;
+    var rota = process.env.REACT_APP_API_URL;
 
     const [nome, setNome] = useState('');
     const [data, setdata] = useState('');
