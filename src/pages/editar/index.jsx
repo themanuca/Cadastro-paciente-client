@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Container,Content, Alermsg } from "./styles";
 import api from '../../services/api';
 import { useParams } from "react-router-dom";
-require("dotenv/config");
+//require("dotenv/config");
 
 export default function Forms(){
 
@@ -35,7 +35,7 @@ export default function Forms(){
 
         console.log(dados);
        
-        const res = await api.put( rota + '/update/paciente/',dados);
+        const res = await api.put( REACT_APP_API_URL + '/update/paciente/',dados);
        
         console.log(res.data);
             if(res.status === 200){
