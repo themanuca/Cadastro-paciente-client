@@ -37,8 +37,7 @@ export default function Forms(){
         console.log(res.data);
             if(res.status === 200){
                 
-                await setCordbgmsg('#008000');
-                setMsg(res.data.msg);
+                
                 setTimeout(() =>window.location.href ='/dash'
                 , 3000)
 

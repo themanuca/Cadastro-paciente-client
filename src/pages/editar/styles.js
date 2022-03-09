@@ -100,7 +100,7 @@ export const Alermsg = styled.div`
         width: 40%;
         margin-bottom: 30px;
         margin-left:30% ;
-
+        
 
     }
     height: 100%;
