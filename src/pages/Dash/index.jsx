@@ -72,7 +72,7 @@ export default function Dash() {
                             <td>{item.endereco}</td>
                             <td>{item.status}</td>
                             <td><Button variant="primary" href={'/dash/edit/'+item._id}>Editar</Button>{' '}
-                            <Button variant="danger">Inativar</Button></td>
+                            </td>
                         </tr>
                      )
                     })}
