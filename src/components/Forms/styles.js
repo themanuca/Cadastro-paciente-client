@@ -6,6 +6,8 @@ export const Container = styled.div`
 
 export const Content = styled.div`
 
+
+
 >h2{
     font-weight: 600;
     margin-bottom: 1rem;

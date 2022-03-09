@@ -2,13 +2,15 @@ import React, {useState, useEffect} from "react";
 import { Container,Content, Alermsg } from "./styles";
 import api from '../../services/api';
 import Button from 'react-bootstrap/Button';
-
+import Spinner from "react-bootstrap/Spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 export default function Forms(){
 
     var rota = process.env.REACT_APP_API_URL;
 
+    const [loading, setLoading] = useState(false);
     const [nome, setNome] = useState('');
     const [data, setdata] = useState('');
     const [cpf, setcpf] = useState('');
@@ -17,9 +19,13 @@ export default function Forms(){
     const [status, setstatus] = useState('');
 
     const[msg, setMsg] = useState();
-    const[corBgmsg, setCordbgmsg] = useState();
+    const[corBgmsg, setCordbgmsg] = useState(false);
+    let [color, setColor] = useState("#000");
 
+  
     async function salvar(e){
+        setLoading(true)
+
          e.preventDefault();
         const dados = {
             nome:nome, 
@@ -33,17 +39,22 @@ export default function Forms(){
         console.log(dados);
        
         const res = await api.post( rota + '/register/paciente',dados);
-       
+        
         console.log(res.data);
             if(res.status === 200){
+                setTimeout(()=> setLoading(false),2000
+                )
+               
+                await setCordbgmsg('#008000');
                 
-                
+                setMsg(res.data.msg);
                 setTimeout(() =>window.location.href ='/dash'
                 , 3000)
 
         }else{
             await setCordbgmsg('#cc1100');
-
+            setTimeout(()=> setLoading(false),2000
+            )
                 setMsg(res.data.msg)
             }
         
@@ -68,6 +79,7 @@ export default function Forms(){
            <Alermsg CormsgErro={corBgmsg} msgErro={padding}>{msg}</Alermsg>
 
             <Content>
+                   
 
                 <h2>Cadastro de Pacientes</h2>
 
@@ -107,6 +119,7 @@ export default function Forms(){
                         />
                     </div>
 
+                    
                     <div className="field">
                         <label><span>Sexo</span></label>
                         <select id="sexo" name="sexo" value={sexo} onChange={e=>setsexo(e.target.value)} required>
@@ -117,6 +130,8 @@ export default function Forms(){
                             
                         </select>
                     </div>
+
+           
 
                     <div className="field">
                         <label><span>Endereço</span></label>
@@ -144,13 +159,21 @@ export default function Forms(){
 
                     </div>
                 
+                    {
+                        loading &&
+                        <div className="spinner">
+                            <ClipLoader  color={color} loading={loading}  size={250} />
+                        </div>
+                        
+
+                    }
                     <input 
                     type="submit" 
                     value='Registrar' 
                     onClick={salvar}/>
 
                 </form>
-
+                
                 <Button onClick={novoPaciente} variant="info">Lista de Usuario</Button>
 
             </Content>
